@@ -1,0 +1,95 @@
+"---
+"  Josh's vimrc
+"  [1] bundle installations
+"  [2] option setting 
+"  [3] nonstandard mappings
+"  [4] plugin configs
+"  [5] visual configs
+"---
+
+set nocompatible
+filetype on
+
+"---
+"[1] bundle setup by vundle
+"---
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'a.vim'
+Bundle 'bufexplorer.zip'
+Bundle 'camelcasemotion'
+Bundle 'DoxygenToolkit.vim'
+Bundle 'EasyMotion'
+Bundle 'moria'
+Bundle 'surround.vim'
+Bundle 'The-NERD-tree'
+Bundle 'benmills/vimux'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'michaeljsmith/vim-indent-object'
+
+"---
+"[2] options
+"---
+filetype plugin indent on
+
+set nobackup
+set writebackup
+set expandtab
+set tabstop=2
+set shiftwidth=2
+
+set smartindent
+set backspace=indent,eol,start
+set hlsearch
+set incsearch
+set iskeyword=@,48-57,192-255 "Allow underscore to separate word objects
+set nrformats+=alpha "Allow Ctrl-[ax] to work on letters
+set foldmethod=indent
+set foldnestmax=2
+
+syntax on
+"syntax highlighting for ROS launch files
+autocmd BufNewFile,BufRead *.launch set filetype=xml
+
+"---
+"[3] mappings
+"---
+"Never move up to press escape!
+"inoremap <C-Space> <Esc>
+inoremap jk <Esc>
+
+"Alternate colon mapping
+noremap <Space> :
+
+"Add empty lines without leaving normal mode
+nmap <M-o> o<Esc>0
+nmap <M-O> O<Esc>0
+
+"Unhighlight current search results (can still hit 'n' to bring back)
+nmap <silent> <BS><BS> :nohlsearch<CR>
+
+"Add single chars and stay in normal mode
+nmap <silent> <M-a> :execute "normal a".nr2char(getchar())."\e"<CR>
+nmap <silent> <M-A> :execute "normal A".nr2char(getchar())."\e"<CR>
+nmap <silent> <M-i> :execute "normal i".nr2char(getchar())."\e"<CR>
+nmap <silent> <M-I> :execute "normal I".nr2char(getchar())."\e"<CR>
+
+"---
+"[4] plugin configs
+"---
+"Some plugin configs
+"NERD Tree
+nmap <F2> :NERDTreeToggle<CR>
+
+"a.vim
+let g:alternateNoDefaultAlternate = 1
+
+"---
+"[5] visuals
+"---
+"Visuals
+set ruler
+colorscheme moria
+set background=dark
