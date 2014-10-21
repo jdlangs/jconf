@@ -1,14 +1,15 @@
 #Josh's mercurial configurations
 [auth]
 #Auto login to bitbucket
-bbp.prefix = bitbucket.org/phobon/
-bbp.username = phobon
-bbp.password = 
+#bbp.prefix = bitbucket.org/phobon/
+#bbp.username = phobon
+#bbp.password = 
 
 [ui]
 editor = gvim
 merge = meld
 username = Josh <jdlangs@gmail.com>
+ssh = ssh -C
 
 [extensions]
 #Enable the external diff tool extension
@@ -18,7 +19,7 @@ color =
 graphlog = 
 zeroconf =
 record =
-hgshelve = ~/.hgext/hgshelve.py
+shelve =
 
 [extdiff]
 #Enables use of 'hg vdiff' for graphical diff'ing
