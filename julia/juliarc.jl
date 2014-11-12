@@ -1,8 +1,11 @@
 #Helping macros
 macro run(file)
-    if "scripts" in readdir()
-        include("scripts/" * string(file) * ".jl")
-    else
-        include(string(file) * ".jl")
+    fstr = string(file)
+    quote
+        if "scripts" in readdir()
+            include("scripts/" * $fstr * ".jl")
+        else
+            include($fstr * ".jl")
+        end
     end
 end
