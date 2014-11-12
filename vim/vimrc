@@ -8,28 +8,27 @@
 "---
 
 set nocompatible
-filetype on
 
 "---
 "[1] bundle setup by vundle
 "---
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-Bundle 'gmarik/vundle'
-Bundle 'a.vim'
-Bundle 'bufexplorer.zip'
-Bundle 'camelcasemotion'
-Bundle 'DoxygenToolkit.vim'
-Bundle 'EasyMotion'
-Bundle 'moria'
-Bundle 'surround.vim'
-Bundle 'The-NERD-tree'
-Bundle 'benmills/vimux'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'scrooloose/syntastic'
-Bundle 'michaeljsmith/vim-indent-object'
-Bundle 'JuliaLang/julia-vim'
+call vundle#begin()
+Plugin 'gmarik/vundle'
+Plugin 'a.vim'
+Plugin 'bufexplorer.zip'
+Plugin 'camelcasemotion'
+Plugin 'DoxygenToolkit.vim'
+Plugin 'EasyMotion'
+Plugin 'moria'
+Plugin 'surround.vim'
+Plugin 'The-NERD-tree'
+Plugin 'benmills/vimux'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/syntastic'
+Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'JuliaLang/julia-vim'
+call vundle#end()
 
 "---
 "[2] options
