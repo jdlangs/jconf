@@ -33,26 +33,24 @@ class Jconf:
     def go(self, fileop):
         for c in self._data:
             n = c['name']
-            print("Processing %s" % n)
-            home_strs = list()
-            repo_strs = list()
+            print("Processing %s ..." % n)
             for f in c.get('home', []):
                 print('\t' + "." + f)
-                home_strs.append(os.path.join(self._homedir, "." + f))
-                repo_strs.append(os.path.join(n,f))
+                fileop(
+                    os.path.join(self._homedir, "." + f),
+                    os.path.join(n,f)
+                )
             for f in c.get('dir', []):
                 print('\t' + os.path.join(n,f))
-                home_strs.append(os.path.join(self._homedir,"." + n,f))
-                repo_strs.append(os.path.join(n,f))
+                fileop(
+                    os.path.join(self._homedir, "." + n, f),
+                    os.path.join(n,f)
+                )
 
-            ops = map(fileop, zip(home_strs, repo_strs))
-            for (src,dest) in ops:
-                shutil.copy(src, dest)
-
-def pull(fs):
-    return fs[0],fs[1]
-def push(fs):
-    return fs[1],fs[0]
+def pull(home, repo):
+    shutil.copy(home, repo)
+def push(home, repo):
+    shutil.copy(repo, home)
 
 def parse_args(args):
     if len(args) != 2:
