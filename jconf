@@ -20,9 +20,9 @@ class Jconf:
                     print("Record %s requires either a 'home' or 'dir' field" %
                             d['name'])
                 else:
-                    if ('dir' in d and not os.path.exists(
-                            os.path.join(self._homedir,d['name']))):
-                        os.mkdir(os.path.join(self._homedir,d['name']))
+                    subdir = os.path.join(self._homedir, "." + d['name'])
+                    if 'dir' in d and not os.path.exists(subdir):
+                        os.mkdir(subdir)
                     self._data.append(d)
 
             if len(self._data) != len(idata):
@@ -42,7 +42,7 @@ class Jconf:
                 repo_strs.append(os.path.join(n,f))
             for f in c.get('dir', []):
                 print('\t' + os.path.join(n,f))
-                home_strs.append(os.path.join(self._homedir,n,f))
+                home_strs.append(os.path.join(self._homedir,"." + n,f))
                 repo_strs.append(os.path.join(n,f))
 
             ops = map(fileop, zip(home_strs, repo_strs))
