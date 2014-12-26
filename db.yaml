@@ -1,0 +1,34 @@
+---
+name: bash
+home: 
+    - bashrc
+---
+name: git
+home:
+    - gitconfig
+---
+name: hg
+home:
+    - hgrc
+---
+name: i3
+dir:
+    - config
+    - i3-exit
+---
+name: julia
+home:
+    - juliarc.jl
+---
+name: octave
+home: 
+    - octaverc
+---
+name: tmux
+home: 
+    - tmux.conf
+---
+name: vim
+dir:
+    - vimrc
+    - gvimrc
