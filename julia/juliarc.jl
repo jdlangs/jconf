@@ -10,6 +10,10 @@ macro run(file)
     end
 end
 
+module FilterWhos
+
+export fwhos
+
 function fwhos(m::Module, pattern::Regex; filter=[])
     filtertypes = applicable(start, filter) ?
         filter : [filter]
@@ -29,3 +33,7 @@ end
 fwhos(;filter=Module) = fwhos(r""; filter=filter)
 fwhos(m::Module; filter=[]) = fwhos(m, r""; filter=filter)
 fwhos(pat::Regex; filter=Module) = fwhos(current_module(), pat; filter=filter)
+
+end
+
+using FilterWhos
