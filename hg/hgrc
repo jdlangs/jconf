@@ -3,7 +3,7 @@
 #Auto login to bitbucket
 #bbp.prefix = bitbucket.org/phobon/
 #bbp.username = phobon
-#bbp.password = 
+#bbp.password =
 
 [ui]
 editor = gvim

@@ -10,10 +10,9 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 #Parameters
+set $mod Mod1
 set $monitor_sleep 600 #seconds
 set $monitor_suspend 3600 #seconds
-
-set $mod Mod1
 
 #power options popup script
 bindsym $mod+BackSpace exec ~/.i3/i3-exit
@@ -21,6 +20,8 @@ bindsym $mod+BackSpace exec ~/.i3/i3-exit
 bindsym $mod+backslash exec i3lock -c 000000
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
+#start a file browser
+bindsym $mod+x exec pcmanfm
 
 # font for window titles. ISO 10646 = Unicode
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -101,23 +102,20 @@ bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
 bindsym $mod+0 workspace number 10
 
-bindsym $mod+Shift+KP_End workspace number 1
-bindsym $mod+Shift+KP_Down workspace number 2
-bindsym $mod+Shift+KP_Next workspace number 3
-bindsym $mod+Shift+KP_Left workspace number 4
-bindsym $mod+Shift+KP_Begin workspace number 5
-bindsym $mod+Shift+KP_Right workspace number 6
-bindsym $mod+Shift+KP_Home workspace number 7
-bindsym $mod+Shift+KP_Up workspace number 8
-bindsym $mod+Shift+KP_Prior workspace number 9
-bindsym $mod+Shift+KP_Insert workspace number 10
-
 # specific workspaces
 bindsym $mod+KP_0 workspace work
 bindsym $mod+KP_1 workspace www
 bindsym $mod+KP_2 workspace mail
 bindsym $mod+KP_3 workspace read
 bindsym $mod+KP_4 workspace sys
+bindsym $mod+KP_5 workspace music
+
+bindsym $mod+Shift+KP_Insert move workspace work
+bindsym $mod+Shift+KP_End move workspace www
+bindsym $mod+Shift+KP_Down move workspace mail
+bindsym $mod+Shift+KP_Next move workspace read
+bindsym $mod+Shift+KP_Left move workspace sys
+bindsym $mod+Shift+KP_Begin move workspace music
 
 # move focused container to workspace
 bindsym $mod+Shift+exclam move workspace number 1
@@ -146,30 +144,30 @@ mode "resize" {
         # when pressing left, the window is resized so that it has
         # more space on its left
 
-bindsym j resize shrink left 10 px or 10 ppt
-bindsym Shift+J resize grow   left 10 px or 10 ppt
+bindsym h resize grow left 10 px or 10 ppt
+bindsym Shift+H resize shrink   left 10 px or 10 ppt
 
-bindsym k resize shrink down 10 px or 10 ppt
-bindsym Shift+K resize grow   down 10 px or 10 ppt
+bindsym j resize grow down 10 px or 10 ppt
+bindsym Shift+J resize shrink   down 10 px or 10 ppt
 
-bindsym l resize shrink up 10 px or 10 ppt
-bindsym Shift+L resize grow   up 10 px or 10 ppt
+bindsym k resize grow up 10 px or 10 ppt
+bindsym Shift+K resize shrink   up 10 px or 10 ppt
 
-bindsym semicolon resize shrink right 10 px or 10 ppt
-bindsym Shift+colon resize grow   right 10 px or 10 ppt
+bindsym l resize grow right 10 px or 10 ppt
+bindsym Shift+L resize shrink   right 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
-bindsym Left resize shrink left 10 px or 10 ppt
-bindsym Shift+Left resize grow   left 10 px or 10 ppt
+bindsym Left resize grow left 10 px or 10 ppt
+bindsym Shift+Left resize shrink   left 10 px or 10 ppt
 
-bindsym Down resize shrink down 10 px or 10 ppt
-bindsym Shift+Down resize grow   down 10 px or 10 ppt
+bindsym Down resize grow down 10 px or 10 ppt
+bindsym Shift+Down resize shrink   down 10 px or 10 ppt
 
-bindsym Up resize shrink up 10 px or 10 ppt
-bindsym Shift+Up resize grow   up 10 px or 10 ppt
+bindsym Up resize grow up 10 px or 10 ppt
+bindsym Shift+Up resize shrink   up 10 px or 10 ppt
 
-bindsym Right resize shrink right 10 px or 10 ppt
-bindsym Shift+Right resize grow   right 10 px or 10 ppt
+bindsym Right resize grow right 10 px or 10 ppt
+bindsym Shift+Right resize shrink   right 10 px or 10 ppt
 
         # back to normal: Enter or Escape
 bindsym Return mode "default"
@@ -190,6 +188,7 @@ exec pa-applet
 exec nm-applet
 exec dropbox start
 exec gm-notify
+exec /opt/copy/x86_64/CopyAgent
 
 #power control
 exec --no-startup-id xset dpms $monitor_sleep $monitor_suspend
@@ -198,7 +197,18 @@ exec --no-startup-id xset dpms $monitor_sleep $monitor_suspend
 workspace work output DVI-I-1
 workspace www output DP-0
 workspace mail output DP-0
+workspace music output DP-0
+
+workspace 1 output DVI-I-1
+workspace 2 output DVI-I-1
+workspace 3 output DVI-I-1
+workspace 4 output DVI-I-1
+workspace 5 output DVI-I-1
+workspace 6 output DVI-I-1
+workspace 7 output DP-0
+workspace 8 output DP-0
 workspace 9 output DP-0
+workspace 10 output DP-0
 
 #window assignments
 assign [title="ThrowBall"] 9

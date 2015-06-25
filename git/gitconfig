@@ -7,3 +7,7 @@
 	branch = br
 	br = branch
 	out = status
+[github]
+	user = phobon
+[push]
+	default = simple

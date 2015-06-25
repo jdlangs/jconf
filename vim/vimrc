@@ -28,6 +28,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'JuliaLang/julia-vim'
+Plugin 'tpope/vim-fugitive'
 call vundle#end()
 
 "---
@@ -78,6 +79,12 @@ nmap <silent> <M-a> :execute "normal a".nr2char(getchar())."\e"<CR>
 nmap <silent> <M-A> :execute "normal A".nr2char(getchar())."\e"<CR>
 nmap <silent> <M-i> :execute "normal i".nr2char(getchar())."\e"<CR>
 nmap <silent> <M-I> :execute "normal I".nr2char(getchar())."\e"<CR>
+
+"Change default fold opening/closing
+nnoremap zo zO
+nnoremap zO zo
+nnoremap zc zC
+nnoremap zC zc
 
 "---
 "[4] plugin configs
