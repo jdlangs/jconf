@@ -10,6 +10,11 @@ macro run(file)
     end
 end
 
+#Reload a module stored in the MOD variable
+macro rl()
+    :(reload(MOD))
+end
+
 module FilterWhos
 
 export fwhos

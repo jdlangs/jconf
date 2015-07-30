@@ -102,5 +102,6 @@ let g:alternateNoDefaultAlternate = 1
 "---
 "Visuals
 set ruler
+set number
 colorscheme moria
 set background=dark
