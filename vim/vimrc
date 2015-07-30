@@ -29,6 +29,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'JuliaLang/julia-vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'lervag/vimtex'
 call vundle#end()
 
 "---
@@ -72,7 +73,7 @@ nmap <M-o> o<Esc>0
 nmap <M-O> O<Esc>0
 
 "Unhighlight current search results (can still hit 'n' to bring back)
-nmap <silent> <BS><BS> :nohlsearch<CR>
+nmap <silent> <Return> :nohlsearch<CR>
 
 "Add single chars and stay in normal mode
 nmap <silent> <M-a> :execute "normal a".nr2char(getchar())."\e"<CR>
