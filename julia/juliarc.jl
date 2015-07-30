@@ -11,8 +11,12 @@ macro run(file)
 end
 
 #Reload a module stored in the MOD variable
-macro rl()
-    :(reload(MOD))
+macro rl(sym...)
+    if length(sym) == 0
+        :(reload(MOD))
+    else
+        esc(:(MOD = $(Expr(:quote, sym[1])); reload(MOD)))
+    end
 end
 
 module FilterWhos
