@@ -7,7 +7,13 @@
 	branch = br
 	br = branch
 	out = status
+	st = status
+	ci = commit
+	rb = rebase
+	co = checkout
 [github]
 	user = phobon
 [push]
 	default = simple
+[rerere]
+	enabled = 1
