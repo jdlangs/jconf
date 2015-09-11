@@ -8,6 +8,7 @@
 "---
 
 set nocompatible
+set shell=bash
 
 "---
 "[1] bundle setup by vundle
@@ -30,6 +31,7 @@ Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'JuliaLang/julia-vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'lervag/vimtex'
+Plugin 'dag/vim-fish'
 call vundle#end()
 
 "---
@@ -105,3 +107,4 @@ set ruler
 set number
 colorscheme moria
 set background=dark
+set colorcolumn=80
