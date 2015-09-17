@@ -99,6 +99,9 @@ nmap <F2> :NERDTreeToggle<CR>
 "a.vim
 let g:alternateNoDefaultAlternate = 1
 
+"syntastic
+let g:syntastic_java_javac_config_file_enabled = 1
+
 "---
 "[5] visuals
 "---
