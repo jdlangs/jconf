@@ -10,7 +10,7 @@ class Jconf:
         self._validverbs = ["pull", "push"]
         self._homedir = os.path.normpath(os.getenv("HOME"))
         self._verb = ""
-        self._simul = False
+        self._sim = False
         self._verbose = False
         self._files = list()
         self.data = list()
@@ -39,7 +39,7 @@ class Jconf:
         self._verb = args[1]
         for arg in args[2:]:
             if arg == "-n":
-                self._simul = True
+                self._sim = True
             elif arg == "-v":
                 self._verbose = True
             else:
@@ -56,17 +56,23 @@ class Jconf:
         for (i,record) in enumerate(data):
             if 'name' not in record:
                 raise RuntimeError("Required key 'name' not in record #%u" % (i+1))
-            elif 'home' not in record and 'dir' not in record:
-                raise RuntimeError("Record '%s' requires a 'home' or 'dir' field" %
+            elif 'home' not in record and 'dir' not in record and 'config' not in record:
+                raise RuntimeError("Record '%s' requires a 'home', 'dir', or 'config' field" %
                         record['name'])
             else:
                 if len(files) == 0 or record["name"] in files:
                     subdir = os.path.join(self._homedir, "." + record["name"])
                     if "dir" in record and not os.path.exists(subdir):
-                        if self._simul or self._verbose:
+                        if self._sim or self._verbose:
                             print("Creating subdir in HOME: " + subdir)
-                        if not self._simul:
+                        if not self._sim:
                             os.mkdir(subdir)
+                    cfgdir = os.path.join(self._homedir, ".config", record["name"])
+                    if "config" in record and not os.path.exists(cfgdir):
+                        if self._sim or self._verbose:
+                            print("Creating subdir in .config: " + subdir)
+                        if not self._sim:
+                            os.mkdir(cfgdir)
                     ndata.append(record)
         return ndata
 
@@ -85,18 +91,23 @@ class Jconf:
                     os.path.join(self._homedir, "." + n, f),
                     os.path.join(n,f)
                 )
+            for f in c.get('config', []):
+                self.fileop(self._verb,
+                    os.path.join(self._homedir, ".config", n, f),
+                    os.path.join(n,f)
+                )
 
     def fileop(self, verb, home, repo):
-        doprint = self._simul or self._verbose
+        doprint = self._sim or self._verbose
         if verb == 'pull':
             if doprint:
                 print("\tpulling %s -> %s" % (home, repo))
-            if not self._simul:
+            if not self._sim:
                 shutil.copy(home, repo)
         elif verb == 'push':
             if doprint:
                 print("\tpushing %s -> %s" % (repo, home))
-            if not self._simul:
+            if not self._sim:
                 shutil.copy(repo, home)
 
 def main():

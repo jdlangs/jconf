@@ -3,6 +3,10 @@ name: bash
 home: 
     - bashrc
 ---
+name: fish
+config:
+    - config.fish
+---
 name: git
 home:
     - gitconfig
