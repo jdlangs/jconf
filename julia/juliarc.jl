@@ -1,4 +1,7 @@
-#Helping macros
+module JuliaRC
+
+export @run, @rl, fwhos, showcache, wipecache
+
 macro run(file)
     fstr = string(file)
     quote
@@ -18,10 +21,6 @@ macro rl(sym...)
         esc(:(MOD = $(Expr(:quote, sym[1])); reload(MOD)))
     end
 end
-
-module FilterWhos
-
-export fwhos
 
 function fwhos(m::Module, pattern::Regex; filter=[])
     filtertypes = applicable(start, filter) ?
@@ -43,6 +42,20 @@ fwhos(;filter=Module) = fwhos(r""; filter=filter)
 fwhos(m::Module; filter=[]) = fwhos(m, r""; filter=filter)
 fwhos(pat::Regex; filter=Module) = fwhos(current_module(), pat; filter=filter)
 
+
+function cachepath()
+    idx = findfirst(x->ismatch(r"/home/.*/\.julia",x), Base.LOAD_CACHE_PATH) 
+    Base.LOAD_CACHE_PATH[idx]
+end
+showcache() = readdir(cachepath())
+
+function wipecache()
+    cpath = cachepath()
+    for file in readdir(cpath)
+        endswith(file, ".ji") && run(`rm $(joinpath(cpath,file))`)
+    end
 end
 
-using FilterWhos
+end
+
+using JuliaRC
