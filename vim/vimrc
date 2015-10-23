@@ -32,6 +32,7 @@ Plugin 'JuliaLang/julia-vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'lervag/vimtex'
 Plugin 'dag/vim-fish'
+Plugin 'ntpeters/vim-better-whitespace'
 call vundle#end()
 
 "---
