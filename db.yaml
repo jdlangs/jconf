@@ -1,6 +1,6 @@
 ---
 name: bash
-home: 
+home:
     - bashrc
 ---
 name: fish
@@ -25,14 +25,15 @@ home:
     - juliarc.jl
 ---
 name: octave
-home: 
+home:
     - octaverc
 ---
 name: tmux
-home: 
+home:
     - tmux.conf
 ---
 name: vim
 dir:
     - vimrc
     - gvimrc
+    - ftplugin/java_eclim.vim
