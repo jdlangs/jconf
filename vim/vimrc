@@ -1,7 +1,7 @@
 "---
 "  Josh's vimrc
 "  [1] bundle installations
-"  [2] option setting 
+"  [2] option setting
 "  [3] nonstandard mappings
 "  [4] plugin configs
 "  [5] visual configs
@@ -26,7 +26,6 @@ Plugin 'surround.vim'
 Plugin 'The-NERD-tree'
 Plugin 'benmills/vimux'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/syntastic'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'JuliaLang/julia-vim'
 Plugin 'tpope/vim-fugitive'
@@ -100,8 +99,8 @@ nmap <F2> :NERDTreeToggle<CR>
 "a.vim
 let g:alternateNoDefaultAlternate = 1
 
-"syntastic
-let g:syntastic_java_javac_config_file_enabled = 1
+"eclim + YCM
+let g:EclimCompletionMethod = 'omnifunc'
 
 "---
 "[5] visuals
