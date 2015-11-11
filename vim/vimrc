@@ -77,6 +77,9 @@ nmap <M-O> O<Esc>0
 "Unhighlight current search results (can still hit 'n' to bring back)
 nmap <silent> <Return> :nohlsearch<CR>
 
+"Close preview windows
+nmap <silent> <BS><BS> :pclose<CR>
+
 "Add single chars and stay in normal mode
 nmap <silent> <M-a> :execute "normal a".nr2char(getchar())."\e"<CR>
 nmap <silent> <M-A> :execute "normal A".nr2char(getchar())."\e"<CR>

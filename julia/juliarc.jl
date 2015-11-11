@@ -44,7 +44,7 @@ fwhos(pat::Regex; filter=Module) = fwhos(current_module(), pat; filter=filter)
 
 
 function cachepath()
-    idx = findfirst(x->ismatch(r"/home/.*/\.julia",x), Base.LOAD_CACHE_PATH) 
+    idx = findfirst(x->ismatch(r"/home/.*/\.julia",x), Base.LOAD_CACHE_PATH)
     Base.LOAD_CACHE_PATH[idx]
 end
 showcache() = readdir(cachepath())
@@ -57,5 +57,8 @@ function wipecache()
 end
 
 end
+
+#Allow for local module loading without include
+isdir("src") && push!(LOAD_PATH, joinpath(pwd(), "src"))
 
 using JuliaRC
