@@ -108,7 +108,7 @@ let g:EclimCompletionMethod = 'omnifunc'
 "---
 "[5] visuals
 "---
-"Visuals
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set ruler
 set number
 colorscheme moria
