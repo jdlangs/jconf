@@ -113,4 +113,4 @@ set ruler
 set number
 colorscheme moria
 set background=dark
-set colorcolumn=80
+set colorcolumn=81

@@ -37,3 +37,4 @@ dir:
     - vimrc
     - gvimrc
     - ftplugin/java_eclim.vim
+    - ftplugin/tex.vim
