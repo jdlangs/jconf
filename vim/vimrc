@@ -8,34 +8,34 @@
 "---
 
 set nocompatible
-set shell=bash
+if has("unix")
+    set shell=bash
+endif
+
+if has("win32") || has("win64")
+    call plug#begin('~/vimfiles/plugs')
+else
+    call plug#begin('~.vim/plugs')
+endif
+Plug 'vim-scripts/moria'
+Plug 'vim-scripts/a.vim'
+Plug 'vim-scripts/camelcasemotion'
+Plug 'vim-scripts/surround.vim'
+Plug 'Valloric/YouCompleteMe'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'scrooloose/nerdtree'
+Plug 'easymotion/vim-easymotion'
+Plug 'benmills/vimux'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'JuliaLang/julia-vim'
+Plug 'tpope/vim-fugitive'
+Plug 'lervag/vimtex'
+Plug 'dag/vim-fish'
+Plug 'ntpeters/vim-better-whitespace'
+call plug#end()
 
 "---
-"[1] bundle setup by vundle
-"---
-set rtp+=~/.vim/bundle/vundle/
-call vundle#begin()
-Plugin 'gmarik/vundle'
-Plugin 'a.vim'
-Plugin 'bufexplorer.zip'
-Plugin 'camelcasemotion'
-Plugin 'DoxygenToolkit.vim'
-Plugin 'EasyMotion'
-Plugin 'moria'
-Plugin 'surround.vim'
-Plugin 'The-NERD-tree'
-Plugin 'benmills/vimux'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'JuliaLang/julia-vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'lervag/vimtex'
-Plugin 'dag/vim-fish'
-Plugin 'ntpeters/vim-better-whitespace'
-call vundle#end()
-
-"---
-"[2] options
+"vim options
 "---
 filetype plugin indent on
 
@@ -61,7 +61,7 @@ autocmd BufNewFile,BufRead *.launch set filetype=xml
 autocmd BufNewFile,BufRead *.jl set filetype=julia
 
 "---
-"[3] mappings
+"mappings
 "---
 "Never move up to press escape!
 "inoremap <C-Space> <Esc>
@@ -93,7 +93,7 @@ nnoremap zc zC
 nnoremap zC zc
 
 "---
-"[4] plugin configs
+"plugin configs
 "---
 "Some plugin configs
 "NERD Tree
@@ -106,7 +106,7 @@ let g:alternateNoDefaultAlternate = 1
 let g:EclimCompletionMethod = 'omnifunc'
 
 "---
-"[5] visuals
+"visuals
 "---
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set ruler
