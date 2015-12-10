@@ -15,7 +15,7 @@ endif
 if has("win32") || has("win64")
     call plug#begin('~/vimfiles/plugs')
 else
-    call plug#begin('~.vim/plugs')
+    call plug#begin('~/.vim/plugs')
 endif
 Plug 'vim-scripts/moria'
 Plug 'vim-scripts/a.vim'
@@ -24,6 +24,7 @@ Plug 'vim-scripts/surround.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
 Plug 'easymotion/vim-easymotion'
 Plug 'benmills/vimux'
 Plug 'michaeljsmith/vim-indent-object'
