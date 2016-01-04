@@ -16,9 +16,10 @@ end
 #Reload a module stored in the MOD variable
 macro rl(sym...)
     if length(sym) == 0
-        esc(:(reload(MOD)))
+        :(reload(MOD))
     else
-        esc(:(MOD = string($(Expr(:quote, sym[1]))); reload(MOD)))
+        modstr = string(sym[1])
+        esc(:(MOD = $modstr; reload(MOD)))
     end
 end
 
