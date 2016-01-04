@@ -32,8 +32,8 @@ floating_modifier $mod
 # kill focused window
 bindsym $mod+Shift+Q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+# start launcher
+bindsym $mod+d exec kupfer
 
 # change focus
 #bindsym $mod+Tab focus right

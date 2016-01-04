@@ -24,7 +24,6 @@ Plug 'vim-scripts/surround.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/syntastic'
 Plug 'easymotion/vim-easymotion'
 Plug 'benmills/vimux'
 Plug 'michaeljsmith/vim-indent-object'
@@ -102,7 +101,8 @@ nmap <F2> :NERDTreeToggle<CR>
 
 "a.vim
 let g:alternateNoDefaultAlternate = 1
-
+"julia unicode input
+let g:latex_to_unicode_auto = 1
 "eclim + YCM
 let g:EclimCompletionMethod = 'omnifunc'
 
