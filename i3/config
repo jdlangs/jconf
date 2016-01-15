@@ -180,7 +180,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
   mode dock
-  status_command i3status
+  status_command i3status --config ~/.i3/status.conf
 }
 
 #status bar applets
