@@ -59,6 +59,9 @@ end
 
 end
 
+#Allow loading from global projects directory
+push!(LOAD_PATH, joinpath(homedir(), "Documents", "Projects"))
+
 #Allow for local module loading without include
 isdir("src") && push!(LOAD_PATH, joinpath(pwd(), "src"))
 
