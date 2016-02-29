@@ -209,6 +209,3 @@ workspace 7 output DP-0
 workspace 8 output DP-0
 workspace 9 output DP-0
 workspace 10 output DP-0
-
-#window assignments
-assign [title="ThrowBall"] 9
