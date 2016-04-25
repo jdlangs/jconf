@@ -186,9 +186,8 @@ bar {
 #status bar applets
 exec pa-applet
 exec nm-applet
-exec dropbox start
 exec gm-notify
-exec /opt/copy/x86_64/CopyAgent
+exec dropbox start
 
 #power control
 exec --no-startup-id xset dpms $monitor_sleep $monitor_suspend
