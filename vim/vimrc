@@ -44,6 +44,7 @@ set writebackup
 set expandtab
 set tabstop=4
 set shiftwidth=4
+set textwidth=100
 
 set nosmartindent
 set cindent
@@ -92,6 +93,9 @@ nnoremap zO zo
 nnoremap zc zC
 nnoremap zC zc
 
+let g:py_header="from __future__ import absolute_import, division, print_function"
+command! Pyhead :call append(0, g:py_header)
+
 "---
 "plugin configs
 "---
@@ -114,4 +118,4 @@ set ruler
 set number
 colorscheme moria
 set background=dark
-set colorcolumn=81
+set colorcolumn=101
