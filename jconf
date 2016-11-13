@@ -46,9 +46,7 @@ class Jconf:
                 self._files.append(arg)
 
     def print_usage(self):
-        verbstr = "%s" % self._validverbs[0]
-        for v in self._validverbs[1:]:
-            verbstr = verbstr + (" | %s" % v)
+        verbstr = " | ".join(self._validverbs)
         print("Usage: jconf {%s} [-n] [-v] [record1] [record2]..." % verbstr)
 
     def check_database(self, data, files):
@@ -77,6 +75,8 @@ class Jconf:
         return ndata
 
     def go(self):
+        if self._sim:
+            print("SIMULATION")
         for c in self.data:
             n = c['name']
             if self._verbose:
