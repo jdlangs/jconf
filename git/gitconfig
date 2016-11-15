@@ -11,6 +11,7 @@
 	ci = commit
 	rb = rebase
 	co = checkout
+	serve = daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
 [github]
 	user = phobon
 [push]
