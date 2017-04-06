@@ -113,7 +113,9 @@ let g:EclimCompletionMethod = 'omnifunc'
 "---
 "visuals
 "---
-set termguicolors
+if has("nvim")
+    set termguicolors
+endif
 set ruler
 set number
 colorscheme moria
