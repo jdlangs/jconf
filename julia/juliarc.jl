@@ -1,8 +1,6 @@
 module JuliaRC
 
-using ClobberingReload
-
-export @run, @rl, @crl, fwhos, showcache, wipecache
+export @run, @rl, fwhos, showcache, wipecache
 
 macro run(file)
     fstr = string(file)
@@ -22,15 +20,6 @@ macro rl(sym...)
     else
         modstr = string(sym[1])
         esc(:(MOD = $modstr; reload(MOD)))
-    end
-end
-
-macro crl(sym...)
-    if length(sym) == 0
-        esc(:(creload(MOD)))
-    else
-        modstr = string(sym[1])
-        esc(:(MOD = $modstr; creload(MOD)))
     end
 end
 
@@ -77,4 +66,3 @@ push!(LOAD_PATH, joinpath(homedir(), "Documents", "Projects"))
 isdir("src") && push!(LOAD_PATH, joinpath(pwd(), "src"))
 
 using JuliaRC
-using ClobberingReload
