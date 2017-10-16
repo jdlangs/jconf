@@ -4,7 +4,6 @@
 [credential]
 	helper = cache --timeout=7200
 [alias]
-	branch = br
 	br = branch
 	out = status
 	st = status
@@ -12,6 +11,7 @@
 	rb = rebase
 	co = checkout
 	serve = daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
+    who = config --get user.email
 [github]
 	user = jdlangs
 [push]
