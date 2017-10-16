@@ -1,0 +1,5 @@
+#!/usr/bin/env fish
+set workspace $argv[1]
+cd ~/Workspaces/$workspace
+set -x SHELL /bin/bash
+bash --init-file devel/setup.bash

@@ -3,9 +3,14 @@ name: bash
 home:
     - bashrc
 ---
+name: bin
+dir-nohide:
+    - ws
+---
 name: fish
 config:
     - config.fish
+    - completions/ws.fish
 ---
 name: git
 home:
