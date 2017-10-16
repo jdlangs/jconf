@@ -50,51 +50,64 @@ class Jconf:
         print("Usage: jconf {%s} [-n] [-v] [record1] [record2]..." % verbstr)
 
     def check_database(self, data, files):
+        allowed_fields = ["home", "config", "dir", "dir-nohide"]
         ndata = list()
         for (i,record) in enumerate(data):
             if 'name' not in record:
                 raise RuntimeError("Required key 'name' not in record #%u" % (i+1))
-            elif 'home' not in record and 'dir' not in record and 'config' not in record:
-                raise RuntimeError("Record '%s' requires a 'home', 'dir', or 'config' field" %
+            elif not any([f in record for f in allowed_fields]):
+                raise RuntimeError(("Record '%s' - No field found from " + str(allowed_fields)) %
                         record['name'])
-            else:
-                if len(files) == 0 or record["name"] in files:
-                    subdir = os.path.join(self._homedir, "." + record["name"])
-                    if "dir" in record and not os.path.exists(subdir):
-                        if self._sim or self._verbose:
-                            print("Creating subdir in HOME: " + subdir)
-                        if not self._sim:
-                            os.mkdir(subdir)
-                    cfgdir = os.path.join(self._homedir, ".config", record["name"])
-                    if "config" in record and not os.path.exists(cfgdir):
-                        if self._sim or self._verbose:
-                            print("Creating subdir in .config: " + subdir)
-                        if not self._sim:
-                            os.mkdir(cfgdir)
-                    ndata.append(record)
+
+            if len(files) == 0 or record["name"] in files:
+                #TODO: create subdirs in repo folder automatically if missing
+                subdir = os.path.join(self._homedir, "." + record["name"])
+                if "dir" in record and not os.path.exists(subdir):
+                    if self._sim or self._verbose:
+                        print("Creating subdir in HOME: " + subdir)
+                    if not self._sim:
+                        os.mkdir(subdir)
+                subdir_nohide = os.path.join(self._homedir, record["name"])
+                if "dir-nohide" in record and not os.path.exists(subdir_nohide):
+                    if self._sim or self._verbose:
+                        print("Creating subdir in HOME: " + subdir_nohide)
+                    if not self._sim:
+                        os.mkdir(subdir_nohide)
+                cfgdir = os.path.join(self._homedir, ".config", record["name"])
+                if "config" in record and not os.path.exists(cfgdir):
+                    if self._sim or self._verbose:
+                        print("Creating subdir in .config: " + subdir)
+                    if not self._sim:
+                        os.mkdir(cfgdir)
+                ndata.append(record)
         return ndata
 
     def go(self):
         if self._sim:
             print("SIMULATION")
         for c in self.data:
-            n = c['name']
+            record_name = c['name']
             if self._verbose:
-                print("Record '%s': " % n)
+                print("Record '%s': " % record_name)
             for f in c.get("home", []):
                 self.fileop(self._verb,
                     os.path.join(self._homedir, "." + f),
-                    os.path.join(n,f)
-                )
-            for f in c.get('dir', []):
-                self.fileop(self._verb,
-                    os.path.join(self._homedir, "." + n, f),
-                    os.path.join(n,f)
+                    os.path.join(record_name,f)
                 )
             for f in c.get('config', []):
                 self.fileop(self._verb,
-                    os.path.join(self._homedir, ".config", n, f),
-                    os.path.join(n,f)
+                    os.path.join(self._homedir, ".config", record_name, f),
+                    os.path.join(record_name,f)
+                )
+            for f in c.get('dir', []):
+                self.fileop(self._verb,
+                    os.path.join(self._homedir, "." + record_name, f),
+                    os.path.join(record_name,f)
+                )
+            for f in c.get('dir-nohide', []):
+                self.fileop(self._verb,
+                    os.path.join(self._homedir, record_name, f),
+                    os.path.join(record_name,f)
                 )
 
     def fileop(self, verb, home, repo):
