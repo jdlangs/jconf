@@ -107,6 +107,9 @@ nmap <F2> :NERDTreeToggle<CR>
 let g:alternateNoDefaultAlternate = 1
 "julia unicode input
 let g:latex_to_unicode_auto = 1
+"YouCompleteMe
+nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
+let g:ycm_always_populate_location_list = 1
 "eclim + YCM
 let g:EclimCompletionMethod = 'omnifunc'
 

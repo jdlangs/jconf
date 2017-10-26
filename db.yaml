@@ -5,6 +5,7 @@ home:
 ---
 name: bin
 dir-nohide:
+    - catkin_link_compile_cmds
     - ws
 ---
 name: fish

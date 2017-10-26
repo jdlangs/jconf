@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+
+import argparse
+import os.path
+import subprocess
+
+parser = argparse.ArgumentParser(
+    description="""
+Link CMake generated compilation databases into each ROS package in a catkin workspace. This script
+should be run in the root directory of the workspace.
+"""
+)
+
+parser.add_argument("-g", "--generate", help="Regenerate compilation databases", action="store_true")
+args = parser.parse_args()
+
+#---------------------------------------
+#Generate compilation database via cmake
+#---------------------------------------
+
+if args.generate:
+    build_cmd = ["catkin", "build", "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"]
+    subprocess.run(build_cmd)
+
+#----------------------------------------------------------------------------------------
+#Find the generated `compile_commands.json` files and symlink to them in the ROS packages
+#----------------------------------------------------------------------------------------
+
+findcmd = ["find", ".", "-name", "compile_commands.json"]
+findout = subprocess.run(findcmd, stdout=subprocess.PIPE).stdout.decode("utf8")
+#print("raw output: ", findout)
+
+dblist = findout.splitlines()
+#print("db list: ", dblist)
+
+for db in dblist:
+    folders = db.split("/")
+    if folders[1] != "build":
+        continue
+    package_name = folders[2].strip()
+    print("Package: ", package_name)
+
+    pkg_find_cmd = ["rospack", "find", package_name]
+    pkg_path = subprocess.run(pkg_find_cmd, stdout=subprocess.PIPE).stdout.decode("utf8").strip()
+
+    db_location = os.path.abspath(db)
+    link_location = os.path.join(pkg_path, "compile_commands.json")
+    if os.path.isfile(link_location):
+        print("  link already made")
+    else:
+        print("  linking at: ", link_location)
+        linkcmd = ['ln', '-s', '-T', db_location, link_location]
+        subprocess.run(linkcmd)
