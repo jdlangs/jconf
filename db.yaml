@@ -42,5 +42,6 @@ name: vim
 dir:
     - vimrc
     - gvimrc
+    - autoload/plug.vim
     - ftplugin/java_eclim.vim
     - ftplugin/tex.vim
