@@ -65,4 +65,4 @@ push!(LOAD_PATH, joinpath(homedir(), "Documents", "Projects"))
 #Allow for local module loading without include
 isdir("src") && push!(LOAD_PATH, joinpath(pwd(), "src"))
 
-using JuliaRC
+using .JuliaRC
