@@ -1,5 +1,11 @@
 #!/usr/bin/env fish
 set workspace $argv[1]
+set space "devel"
+if set -q argv[2]
+    set space $argv[2]
+end
+echo "Setting $space space"
 cd ~/Workspaces/$workspace
 set -x SHELL /bin/bash
-bash --init-file devel/setup.bash
+set -x ENVSETUP ~/Workspaces/$workspace/$space/setup.bash
+bash --init-file ~/.ros/ws_setup.bash
