@@ -23,7 +23,7 @@ class Jconf:
 
         try:
             fstrm = open("db.yaml")
-            idata = list(yaml.load_all(fstrm))
+            idata = list(yaml.safe_load_all(fstrm))
             fstrm.close()
             self.data = self.check_database(idata, self._files)
 

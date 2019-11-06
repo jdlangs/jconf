@@ -12,6 +12,7 @@
 	co = checkout
 	serve = daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
     who = config --get user.email
+	root = rev-parse --show-toplevel
 [github]
 	user = jdlangs
 [push]
@@ -19,6 +20,6 @@
 [rerere]
 	enabled = 1
 [core]
-	editor = vim
+	editor = nvim
 [diff]
 	tool = meld
