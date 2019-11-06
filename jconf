@@ -116,12 +116,18 @@ class Jconf:
             if doprint:
                 print("\tpulling %s -> %s" % (home, repo))
             if not self._sim:
-                shutil.copy(home, repo)
+                try:
+                    shutil.copy(home, repo)
+                except Exception as e:
+                    print(f'Failed to pull {home} -> {repo}')
         elif verb == 'push':
             if doprint:
                 print("\tpushing %s -> %s" % (repo, home))
             if not self._sim:
-                shutil.copy(repo, home)
+                try:
+                    shutil.copy(repo, home)
+                except Exception as e:
+                    print(f'Failed to push {repo} -> {home}')
 
 def main():
     conf = Jconf(sys.argv)

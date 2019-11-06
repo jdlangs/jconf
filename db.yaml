@@ -11,6 +11,8 @@ dir-nohide:
 name: fish
 config:
     - config.fish
+    - completions/rws.fish
+    - functions/rws.fish
 ---
 name: git
 home:
