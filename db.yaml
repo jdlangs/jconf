@@ -7,12 +7,10 @@ name: bin
 dir-nohide:
     - catkin_make_compile_cmds
     - colcon_compile_cmds
-    - ws
 ---
 name: fish
 config:
     - config.fish
-    - completions/ws.fish
 ---
 name: git
 home:
