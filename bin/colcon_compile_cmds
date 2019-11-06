@@ -1,0 +1,64 @@
+#!/usr/bin/env python3
+
+import argparse
+import os.path
+import subprocess
+
+parser = argparse.ArgumentParser(
+    description="""
+Link CMake generated compilation databases into each ROS package in a colcon workspace. This script
+should be run in the root directory of the workspace.
+"""
+)
+
+parser.add_argument("-l", "--link", help="Relink compilation databases to workspace packages", action="store_true")
+args = parser.parse_args()
+
+def get_package_path(colcon_info):
+    infolines = colcon_info.splitlines()
+    for line in infolines:
+        ls = line.split()
+        if len(ls) >= 2 and ls[0].strip().startswith('path'):
+            return ls[1].strip()
+    return None
+
+#---------------------------------------
+#Generate compilation database via cmake
+#---------------------------------------
+
+if not args.link:
+    build_cmd = ["colcon", "build", "--ament-cmake-args", "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"]
+    subprocess.run(build_cmd)
+
+#----------------------------------------------------------------------------------------
+#Find the generated `compile_commands.json` files and symlink to them in the ROS packages
+#----------------------------------------------------------------------------------------
+
+if args.link:
+    listcmd = ["colcon", "list", "--names-only"]
+    listout = subprocess.run(listcmd, stdout=subprocess.PIPE).stdout.decode("utf8")
+    print("raw output: ", listout)
+
+    pkglist = listout.splitlines()
+    print("pkg list: ", pkglist)
+
+    for pkg in pkglist:
+        print("Package: ", pkg)
+        infocmd = ["colcon", "info", pkg]
+        infoout = subprocess.run(infocmd, stdout=subprocess.PIPE).stdout.decode("utf8")
+        pkgpath = get_package_path(infoout)
+
+        if pkgpath is None:
+            print('package {} not found'.format(pkg))
+            print('  colcon info output:\n', infoout)
+            continue
+
+        db_location = os.path.join(os.getcwd(), "build", pkg, "compile_commands.json")
+        link_location = os.path.join(pkgpath, "compile_commands.json")
+
+        if os.path.isfile(link_location):
+            print("  link already made")
+        else:
+            print("  linking at: ", link_location)
+            linkcmd = ['ln', '-s', '-T', db_location, link_location]
+            subprocess.run(linkcmd)
