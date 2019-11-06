@@ -21,12 +21,6 @@ name: hg
 home:
     - hgrc
 ---
-name: i3
-dir:
-    - config
-    - i3-exit
-    - status.conf
----
 name: julia
 home:
     - juliarc.jl
