@@ -25,10 +25,6 @@ name: julia
 home:
     - juliarc.jl
 ---
-name: octave
-home:
-    - octaverc
----
 name: tmux
 home:
     - tmux.conf
