@@ -121,3 +121,5 @@ say() { if [[ "${1}" =~ -[a-z]{2} ]]; then local lang=${1#-}; local text="${*#$1
 setxkbmap -option ctrl:nocaps
 #open file in existing gvim instance
 alias xvim='gvim --remote'
+
+source /home/jlangsfeld/.config/broot/launcher/bash/br

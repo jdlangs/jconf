@@ -1,6 +1,6 @@
 [user]
 	name = Josh Langsfeld
-	email = jdlangs@gmail.com
+	email = josh.langsfeld@gmail.com
 [credential]
 	helper = cache --timeout=7200
 [alias]

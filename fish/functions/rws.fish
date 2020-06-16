@@ -14,7 +14,7 @@ function rws
     # Check if sourcing a distro rather than a workspace
     if contains $workspace $rosdistros
         echo "Setting '$workspace' distro env"
-        __rws_source_setup /opt/ros/$workspace/setup.bash
+        __rws_source_setup $workspace /opt/ros/$workspace/setup.bash
         return 0
     end
 
@@ -45,12 +45,19 @@ function rws
     end
 
     echo "Setting '$space' space in workspace '$workspace'"
-    cd $workspace_dir
-    __rws_source_setup $space/setup.bash
+    __rws_source_setup $workspace $workspace_dir/$space/setup.bash
 end
 
+#Actually source the ROS workspace
 function __rws_source_setup
-    bass source $argv[1]
+    # Redefine the prompt with ROS workspace info
+    # defined here so it only happens if this function runs
+    function fish_prompt
+        echo "[ROS: $ROS_WORKSPACE workspace] "(prompt_pwd)"> "
+    end
+
+    set -g ROS_WORKSPACE $argv[1]
+    bass source $argv[2]
 
     # For ROS1 only, need to source rosfish file to get command line tools
     set ros1distros "kinetic" "melodic" "noetic"
@@ -58,3 +65,4 @@ function __rws_source_setup
         source /opt/ros/$ROS_DISTRO/share/rosbash/rosfish
     end
 end
+

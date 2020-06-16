@@ -20,7 +20,7 @@ endif
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dag/vim-fish'
 Plug 'easymotion/vim-easymotion'
-Plug 'jlanzarotta/bufexplorer'
+Plug 'mihaifm/bufstop'
 Plug 'JuliaLang/julia-vim'
 Plug 'lervag/vimtex'
 Plug 'michaeljsmith/vim-indent-object'
@@ -56,6 +56,7 @@ set iskeyword=@,48-57,192-255 "Allow underscore to separate word objects
 set nrformats+=alpha "Allow Ctrl-[ax] to work on letters
 set foldmethod=indent
 set foldnestmax=2
+set foldopen-=block
 
 syntax on
 "syntax highlighting for ROS launch files
@@ -101,6 +102,10 @@ nmap <F8> :bprevious<CR>
 nmap <F9> :bnext<CR>
 nmap <F12> :bdelete<CR>
 
+nmap <Leader>b :Bufstop<CR>
+nmap <Leader>a :BufstopFast<CR>
+nmap <Leader>q :call BufstopSwitchTo(1)<CR>
+
 let g:py_header="from __future__ import absolute_import, division, print_function, unicode_literals"
 command! Pyhead :call append(0, g:py_header)
 
@@ -117,8 +122,9 @@ let g:latex_to_unicode_auto = 1
 nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 let g:ycm_always_populate_location_list = 1
 "airline
-let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
+"Bufstop
+let g:BufstopKeys = 'fsagrewqtvcxzb12345yuiopnm67890ABCEFGHIJKLMNOPQRSTUVZ'
 
 "---
 "visuals
@@ -131,3 +137,4 @@ set number
 colorscheme moria
 set background=dark
 set colorcolumn=+1
+highlight Folded guibg=#202032
