@@ -7,8 +7,10 @@
 	br = branch
 	out = status
 	st = status
+    sw = switch
 	ci = commit
 	rb = rebase
+    rs = restore
 	co = checkout
 	serve = daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
     who = config --get user.email
