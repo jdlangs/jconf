@@ -23,11 +23,12 @@ Plug 'easymotion/vim-easymotion'
 Plug 'mihaifm/bufstop'
 Plug 'JuliaLang/julia-vim'
 Plug 'lervag/vimtex'
+Plug 'tmhedberg/SimpylFold'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'
-Plug 'Valloric/YouCompleteMe'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-scripts/moria'
 Plug 'vim-scripts/a.vim'
@@ -54,9 +55,6 @@ set hlsearch
 set incsearch
 set iskeyword=@,48-57,192-255 "Allow underscore to separate word objects
 set nrformats+=alpha "Allow Ctrl-[ax] to work on letters
-set foldmethod=indent
-set foldnestmax=2
-set foldopen-=block
 
 syntax on
 "syntax highlighting for ROS launch files
@@ -118,13 +116,14 @@ command! Pyhead :call append(0, g:py_header)
 let g:alternateNoDefaultAlternate = 1
 "julia unicode input
 let g:latex_to_unicode_auto = 1
-"YouCompleteMe
-nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
-let g:ycm_always_populate_location_list = 1
 "airline
 let g:airline#extensions#tabline#fnamemod = ':t'
 "Bufstop
 let g:BufstopKeys = 'fsagrewqtvcxzb12345yuiopnm67890ABCEFGHIJKLMNOPQRSTUVZ'
+"vimtex
+let g:tex_flavor = 'latex'
+"SimpylFold
+let g:SimpylFold_fold_docstring = 0
 
 "---
 "visuals
