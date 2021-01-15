@@ -1,5 +1,3 @@
-setxkbmap -option ctrl:nocaps
-
 fish_vi_key_bindings
 
 function fish_user_key_bindings
@@ -20,6 +18,6 @@ set -x QT_SCREEN_SCALE_FACTORS ""
 set -x CMAKE_PREFIX_PATH ~/Qt/5.15.2/gcc_64/lib/cmake $CMAKE_PREFIX_PATH
 set -x LD_LIBRARY_PATH ~/Qt/5.15.2/gcc_64/plugins ~/Qt/5.15.2/gcc_64/lib $LD_LIBRARY_PATH
 
-if type -q "bass" and test -f "~/.profile"
-    bass source ~/.profile
-end
+#if type -q "bass" and test -f "~/.profile"
+#bass source ~/.profile
+#end
